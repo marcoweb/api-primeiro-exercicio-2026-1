@@ -14,15 +14,15 @@ import jakarta.persistence.GenerationType;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name="tarefas")
+@Table(name="generos")
 public class Tarefa {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    private String descricao;
+    private String nome;
 
-    public Tarefa(long id, String descricao) {
+    public Tarefa(long id, String nome) {
         this.id = id;
-        this.descricao = descricao;
+        this.nome = nome;
     }
 }
