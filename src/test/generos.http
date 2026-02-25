@@ -9,8 +9,7 @@ POST {{url}}
 Content-Type: application/json
 
 {
-    "id" : 0,
-    "descricao" : "Ficção Científica"
+    "nome" : "Policial"
 }
 
 ###
@@ -19,7 +18,7 @@ Content-Type: application/json
 
 {
     "id" : 0,
-    "descricao" : "Terror"
+    "nome" : "Terror"
 }
 
 ###

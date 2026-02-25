@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import app.model.Genero;
+import app.record.GeneroDTO;
+import app.record.GeneroInsertDTO;
 import app.repository.GeneroRepository;
 
 import java.util.Optional;
@@ -26,8 +28,8 @@ public class GeneroController {
     private GeneroRepository generoRepo;
 
     @GetMapping
-    public Iterable<Genero> list() {
-        return generoRepo.findAll();
+    public Iterable<GeneroDTO> list() {
+        return generoRepo.findAll().stream().map(GeneroDTO::new).toList();
     }
 
     @GetMapping("/{id}")
@@ -36,14 +38,16 @@ public class GeneroController {
     }
 
     @PostMapping
-    public Genero insert(@RequestBody Genero novaGenero) {
-        return generoRepo.save(novaGenero);
+    public GeneroDTO insert(@RequestBody GeneroInsertDTO novaGenero) {
+        Genero novo = new Genero();
+        novo.setNome(novaGenero.nome());
+        return new GeneroDTO(generoRepo.save(novo));
     }
 
     @PutMapping("/{id}")
     public Genero update(@PathVariable long id, @RequestBody Genero modif){
         Optional<Genero> busca = generoRepo.findById(id);
-        busca.get().setDescricao(modif.getDescricao());
+        busca.get().setNome(modif.getNome());
         return generoRepo.save(busca.get());
     }
 

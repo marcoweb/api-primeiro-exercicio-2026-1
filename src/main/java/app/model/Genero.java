@@ -3,7 +3,7 @@ package app.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
-
+import app.record.GeneroDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -15,14 +15,19 @@ import jakarta.persistence.GenerationType;
 @NoArgsConstructor
 @Entity
 @Table(name="generos")
-public class Tarefa {
+public class Genero {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private String nome;
 
-    public Tarefa(long id, String nome) {
+    public Genero(long id, String nome) {
         this.id = id;
         this.nome = nome;
+    }
+
+    public Genero(GeneroDTO dados) {
+        this.id = dados.id();
+        this.nome = dados.nome();
     }
 }
