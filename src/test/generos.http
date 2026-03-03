@@ -9,17 +9,16 @@ POST {{url}}
 Content-Type: application/json
 
 {
-    "nome" : "Policial"
-}
-
-###
-PUT {{url}}/1
-Content-Type: application/json
-
-{
-    "id" : 0,
     "nome" : "Terror"
 }
 
 ###
-DELETE {{url}}/1
+PUT {{url}}/3
+Content-Type: application/json
+
+{
+    "nome" : "Terror (Modificado)"
+}
+
+###
+DELETE {{url}}/3
