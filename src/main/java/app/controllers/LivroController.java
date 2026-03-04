@@ -29,7 +29,7 @@ public class LivroController {
         return livroService.insert(dados);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public LivroDTO update(@PathVariable long id, @RequestBody LivroInsertDTO dados) {
         System.out.println("--------------");
         System.out.println(id);
