@@ -1,3 +1,20 @@
 @url = http://127.0.0.1:8080/livros
 
 GET {{url}}
+###
+POST {{url}}
+Content-Type: application/json
+
+{
+    "titulo": "Assassinato no Expresso do Oriente",
+    "id_genero": 2
+}
+
+###
+PUT {{url}}/1
+Content-Type: application/json
+
+{
+    "titulo" : "A Sociedade do Anel",
+    "id_genero": 1
+}
