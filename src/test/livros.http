@@ -6,9 +6,15 @@ POST {{url}}
 Content-Type: application/json
 
 {
-    "titulo": "Assassinato no Expresso do Oriente",
-    "id_genero": 2
+    "titulo" : "Teste",
+    "id_genero" : 1,
+    "autores": [1, 2]
 }
+
+# {
+#     "titulo": "Assassinato no Expresso do Oriente",
+#     "id_genero": 2
+# }
 
 ###
 PUT {{url}}/2

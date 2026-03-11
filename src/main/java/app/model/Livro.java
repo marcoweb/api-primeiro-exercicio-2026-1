@@ -7,9 +7,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinTable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.ArrayList;
 
 import app.record.LivroDTO;
 
@@ -27,6 +32,14 @@ public class Livro {
     @ManyToOne
     @JoinColumn(name="id_genero", nullable=false)
     private Genero genero;
+
+    @ManyToMany
+    @JoinTable(
+        name="livros_possuem_autores",
+        joinColumns = @JoinColumn(name="livro_id"),
+        inverseJoinColumns = @JoinColumn(name="autor_id")
+    )
+    private List<Autor> autores = new ArrayList<Autor>();
 
     public Livro(LivroDTO dados) {
         this.id = dados.id();

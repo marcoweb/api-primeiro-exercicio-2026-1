@@ -8,8 +8,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import app.model.Genero;
 import app.model.Livro;
+import app.model.Autor;
 import app.record.LivroDTO;
 import app.record.LivroInsertDTO;
+import app.repository.AutorRepository;
 import app.repository.GeneroRepository;
 import app.repository.LivroRepository;
 import app.services.GeneroService;
@@ -21,6 +23,8 @@ public class LivroService {
     @Autowired
     private GeneroService generoService;
     // private GeneroRepository generoRepo;
+    @Autowired
+    private AutorService autorService;
 
     public Iterable<LivroDTO> findAll() {
         return livroRepo.findAll().stream().map(LivroDTO::new).toList();
@@ -40,6 +44,9 @@ public class LivroService {
         Livro livro = new Livro();
         livro.setTitulo(dados.titulo());
         livro.setGenero(genero);
+        for(long autor_id : dados.autores()) {
+            livro.getAutores().add(new Autor(autorService.getOne(autor_id)));
+        }
 
         return new LivroDTO(livroRepo.save(livro));
     }
@@ -55,6 +62,10 @@ public class LivroService {
         Genero genero = new Genero(generoService.findOne(dados.id_genero()));
         resultado.get().setTitulo(dados.titulo());
         resultado.get().setGenero(genero);
+        resultado.get().setAutores(new ArrayList());
+        for(long id_autor : dados.autores()) {
+            resultado.get().getAutores().add(new Autor(autorService.getOne(autor_id)));
+        }
         return new LivroDTO(livroRepo.save(resultado.get()));
     }
 }

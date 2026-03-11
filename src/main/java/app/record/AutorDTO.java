@@ -1,6 +1,6 @@
-package application.record;
+package app.record;
 
-import application.model.Autor;
+import app.model.Autor;
 
 public record AutorDTO(long id, String nome) {
     public AutorDTO (Autor autor) {
